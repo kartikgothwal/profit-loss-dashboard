@@ -1,5 +1,4 @@
 import { JSX } from "react";
-
 const Heading: ({ title }: { title: string }) => JSX.Element = ({
   title,
 }: {
