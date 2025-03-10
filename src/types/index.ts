@@ -1,9 +1,13 @@
+import { ReactNode } from "react";
+
 export interface Column {
   value: string;
 }
 
 export interface Row {
-  Header: any;
+  Header: {
+    ColData?: Column[];
+  };
   type: string;
   group?: string;
   ColData?: Column[];
@@ -14,8 +18,16 @@ export interface Row {
 export interface ProfitLossData {
   Columns?: {
     Column: {
-      ColTitle: ReactNode; value: string 
-}[];
+      ColTitle: ReactNode;
+      value: string;
+    }[];
   };
   Rows?: { Row?: Row[] };
+}
+
+export interface ErrorExpertProps {
+  error: unknown;
+}
+export interface IAPIResponse {
+  data: ProfitLossData;
 }
