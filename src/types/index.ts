@@ -29,9 +29,7 @@ export interface ErrorExpertProps {
   error: unknown;
 }
 export interface IAPIResponse {
-  data: {
-    data: ProfitLossData;
-  };
+  data: ProfitLossData | undefined;
   status: number;
   statusText: string;
 }

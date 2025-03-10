@@ -10,7 +10,8 @@ const RowHeroComponent: () => JSX.Element = (): JSX.Element => {
     null
   );
   const { data, error, isPending } = useGetQueries(GET_PROFIT_LOSS_REPORT);
-   
+  console.log("🚀 ~ data:", data);
+
   useEffect(() => {
     if (data && data?.data) {
       setProfitLossData(data.data);
