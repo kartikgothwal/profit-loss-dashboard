@@ -34,6 +34,6 @@ export interface IAPIResponse {
   statusText: string;
 }
 export interface ErrorComponentProps {
-  message?: string;
-  onRetry?: () => void;
+  error: Error;
+  refetch: () => void;
 }

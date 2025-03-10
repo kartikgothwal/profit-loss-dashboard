@@ -4,20 +4,22 @@ import { JSX, useEffect, useState } from "react";
 import { useGetQueries } from "../../apiQuery/useAPIQuery";
 import { GET_PROFIT_LOSS_REPORT } from "../../constant";
 import LoadingComponent from "../Layout/LoadingComponent";
+import ErrorComponent from "../../utils/ErrorComponent";
 
 const RowHeroComponent: () => JSX.Element = (): JSX.Element => {
   const [profitLossData, setProfitLossData] = useState<ProfitLossData | null>(
     null
   );
-  const { data, error, isPending } = useGetQueries(GET_PROFIT_LOSS_REPORT);
-  console.log("🚀 ~ data:", data);
+  const { data, error, isPending , refetch} = useGetQueries(GET_PROFIT_LOSS_REPORT);
 
   useEffect(() => {
     if (data && data?.data) {
       setProfitLossData(data.data);
     }
   }, [data]);
-
+  if (error) {
+    return <ErrorComponent error={error} refetch={refetch} />;
+  }
   return (
     <>
       {isPending ? (
