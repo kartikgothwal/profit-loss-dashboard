@@ -1,25 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import axios from "axios";
-
-interface Column {
-  value: string;
-}
-
-interface Row {
-  type: string;
-  group?: string;
-  ColData?: Column[];
-  Rows?: { Row?: Row[] };
-  Summary?: { ColData?: Column[] };
-}
-
-interface ProfitLossData {
-  Columns?: {
-    column: { value: string }[];
-  };
-  Rows?: { Row?: Row[] };
-}
+import { ProfitLossData, Row } from "./types";
 
 function App() {
   const [profitLossData, setProfitLossData] = useState<ProfitLossData | null>(
@@ -39,7 +21,7 @@ function App() {
     }
     fetchReportData();
   }, []);
-
+  // const incomeRow = (profitLossData?.Columns?.Column?.length ?? 0) - 1;
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-4xl font-bold text-blue-600 mb-4">
@@ -50,20 +32,33 @@ function App() {
         <table className="min-w-full border-collapse border border-gray-300">
           <thead>
             <tr className="bg-gray-200">
-              <th className="border border-gray-300 px-4 py-2 text-left">
-                Category
-              </th>
-              {profitLossData.Columns?.column?.map((col, index) => (
+              {profitLossData.Columns?.Column?.map((col, index) => (
                 <th
                   key={index}
                   className="border border-gray-300 px-4 py-2 text-right"
                 >
-                  {col.value}
+                  {col.ColTitle}
                 </th>
               ))}
             </tr>
           </thead>
           <tbody>
+            {/* <tr className={`border border-gray-300`}> */}
+            {/* <td
+                className="border border-gray-300 px-4 py-2"
+                style={{ paddingLeft: `${1 * 20}px` }}
+              >
+                Income
+              </td> */}
+            {/* {Array(incomeRow)
+                .fill(0)
+                .map((_) => (
+                  <td
+                    key={10}
+                    className="border border-gray-300 px-4 py-2 text-right"
+                  ></td>
+                ))} */}
+            {/* </tr> */}
             {profitLossData.Rows?.Row?.map((row, rowIndex) => (
               <RowComponent key={rowIndex} row={row} level={0} />
             ))}
@@ -76,26 +71,47 @@ function App() {
   );
 }
 
-// Recursive Row Renderer to handle nested categories
 const RowComponent = ({ row, level }: { row: Row; level: number }) => {
   return (
     <>
+      {row?.Header && (
+        <tr
+          className={`border border-gray-300 ${level === 0 ? "font-bold" : ""}`}
+        >
+          <td
+            className="border border-gray-300 px-4 py-2"
+            style={{ paddingLeft: `${1 * 20}px` }}
+          >
+            {row?.Header?.ColData[0]?.value || ""}
+          </td>
+          {row?.Header?.ColData.slice(1).map(
+            (col: { value: string }, index: number) => (
+              <td
+                key={index}
+                className="border border-gray-300 px-4 py-2 text-right"
+              >
+                {col.value || ""}
+              </td>
+            )
+          )}
+        </tr>
+      )}
       {row.ColData && (
         <tr
           className={`border border-gray-300 ${level === 0 ? "font-bold" : ""}`}
         >
           <td
             className="border border-gray-300 px-4 py-2"
-            style={{ paddingLeft: `${level * 20}px` }} // Indentation for subcategories
+            style={{ paddingLeft: `${2 * 20}px` }}
           >
-            {row.ColData[0]?.value || "-"}
+            {row.ColData[0]?.value || ""}
           </td>
           {row.ColData.slice(1).map((col, index) => (
             <td
               key={index}
               className="border border-gray-300 px-4 py-2 text-right"
             >
-              {col.value || "-"}
+              {col.value || ""}
             </td>
           ))}
         </tr>
@@ -108,14 +124,14 @@ const RowComponent = ({ row, level }: { row: Row; level: number }) => {
       {row.Summary?.ColData && (
         <tr className="border border-gray-300 font-bold bg-gray-100">
           <td className="border border-gray-300 px-4 py-2">
-            {row.Summary.ColData[0]?.value || "-"}
+            {row.Summary.ColData[0]?.value || ""}
           </td>
           {row.Summary.ColData.slice(1).map((col, index) => (
             <td
               key={index}
               className="border border-gray-300 px-4 py-2 text-right"
             >
-              {col.value || "-"}
+              {col.value || ""}
             </td>
           ))}
         </tr>
