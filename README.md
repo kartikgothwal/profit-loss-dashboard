@@ -1,6 +1,105 @@
-<<<<<<< HEAD
-# profit-loss-dashboard
-=======
+
+
+# Profit-Loss Dashboard
+
+## 📌 Project Overview
+The **Profit-Loss Dashboard** is a React-based web application built with Vite. It provides an interactive dashboard for tracking profit and loss data using modern frontend technologies.
+
+
+## Features
+
+- 📊 **Real-time Profit & Loss Tracking**  
+- ⚡ **Fast & Optimized with Vite**  
+- 🌐 **API Integration using Axios**  
+- 🔥 **React Query for State Management**  
+- 🎨 **Styled with Tailwind CSS**  
+- 🔔 **Notifications using React-Hot-Toast**
+
+## Tech Stack
+
+- **Client**: React 19, Vite, Tailwind CSS, Typescript  
+- **State Management**: React-Tanstack-Query  
+- **API Calls**: Axios  
+- **Notifications**: React-Hot-Toast  
+- **Linting & Formatting**: ESLint  
+- **Server**: Python FastAPI
+
+
+
+## Project Setup
+
+### 1️⃣ Clone the repository  
+
+```bash
+git clone https://github.com/kartikgothwal/profit-loss-dashboard.git
+
+cd profit-loss-dashboard    
+```
+
+### 2️⃣ Install dependencies
+```bash
+npm install
+```
+
+### 3️⃣ Start the development server
+```bash
+npm run dev
+```
+
+### 4️⃣ Build for production
+```bash
+npm run build
+```
+
+### 5️⃣ Preview the production build
+```bash
+npm run preview
+```
+    
+## Environment Variables
+
+Create a .env file in the root directory and add any required API keys or environment variables.
+
+```bash
+VITE_BACKEND_URI=http://localhost:8000
+```
+
+## ✅ Linting
+Run ESLint to check for issues:
+
+```bash
+npm run lint
+```
+
+## 🤝 Contributing
+
+    1. Fork the repository
+    2. Create a new branch (git checkout -b feature-branch)
+    3. Commit your changes (git commit -m "Add new feature")
+    4. Push to the branch (git push origin feature-branch)
+    5. Create a Pull Request
+
+All contributions are welcome! 🎉
+
+
+## 🛠️ Scripts
+
+The project includes several scripts to streamline development, testing, and deployment.
+
+| Script           | Description                                      |
+|------------------|--------------------------------------------------|
+| `npm run dev`   | Starts the development server                     |
+| `npm run build` | Builds the app for production                     |
+| `npm run preview` | Previews the built production app               |
+| `npm run lint`  | Runs ESLint to check for code issues              |
+
+### Running Scripts
+
+To execute a script, use:
+
+```bash
+npm run <script-name>
+```
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
