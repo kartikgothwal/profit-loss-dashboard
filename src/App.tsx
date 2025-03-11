@@ -1,13 +1,17 @@
 import { JSX } from "react";
 import "./App.css";
-import Heading from "./components/Layout/Heading";
-import { PROFIT_LOSS_HEADER } from "./constant";
-import RowHeroComponent from "./components/ui/RowHeroComponent";
+import ProfileLossReport from "./components/ui/profit-and-loss-report/ProfileLossReport";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import BalanceSheet from "./components/ui/balance-sheet/BalanceSheet";
 function App(): JSX.Element {
   return (
     <div className="container mx-auto p-4">
-      <Heading title={PROFIT_LOSS_HEADER} />
-      <RowHeroComponent />
+      <Router>
+        <Routes>
+          <Route path="/" element={<ProfileLossReport />} />
+          <Route path="/balance-sheet" element={<BalanceSheet />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

@@ -2,15 +2,18 @@ import RowComponent from "./RowComponent";
 import { ProfitLossData, Row } from "../../types";
 import { JSX, useEffect, useState } from "react";
 import { useGetQueries } from "../../apiQuery/useAPIQuery";
-import { GET_PROFIT_LOSS_REPORT } from "../../constant";
 import LoadingComponent from "../Layout/LoadingComponent";
 import ErrorComponent from "../../utils/ErrorComponent";
 
-const RowHeroComponent: () => JSX.Element = (): JSX.Element => {
+const RowHeroComponent: ({
+  queryKeyURL,
+}: {
+  queryKeyURL: string;
+}) => JSX.Element = ({ queryKeyURL }: { queryKeyURL: string }): JSX.Element => {
   const [profitLossData, setProfitLossData] = useState<ProfitLossData | null>(
     null
   );
-  const { data, error, isPending , refetch} = useGetQueries(GET_PROFIT_LOSS_REPORT);
+  const { data, error, isPending, refetch } = useGetQueries(queryKeyURL);
 
   useEffect(() => {
     if (data && data?.data) {

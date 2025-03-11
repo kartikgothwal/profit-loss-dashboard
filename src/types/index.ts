@@ -37,3 +37,13 @@ export interface ErrorComponentProps {
   error: Error;
   refetch: () => void;
 }
+
+export interface IHeadingProps {
+  title: string;
+  ButtonClick: () => void;
+  ButtonText: string;
+}
+export interface IButtonProps{
+  onClick: () => void;
+  Text: string;
+}
